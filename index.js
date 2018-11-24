@@ -12,14 +12,50 @@
 'use strict';
 
 function id() {
-    return "Replace This With Your Student ID";
+    return "up822718";
     // e.g. return "UP654321";
 }
 
 function fn() {
-    return "Replace This With Your First Name";
+    return "William";
 }
 
 function sn() {
-    return "Replace This With Your Surname";
+    return "Maber";
 }
+
+// function showMessage(el,url)
+// {
+//   const response =  fetch(url);
+//   const text = await response.text();
+//   const dt = document.getElementById(el);
+//   dt.textContent = url;
+// }
+async function showMessage(el,url)
+{
+    const response =  await  fetch(url);
+    const text =   await response.text();
+    el.textContent = text;
+ }
+
+ async function showList(el,url)
+ {
+     const response =  await  fetch(url);
+   	 const data = await response.json();
+     for (const i of data)
+     {
+       const li = document.createElement("li");
+       li.textContent = i;
+       el.appendChild(li);
+     }
+ }
+
+ function startShowingMessage(el,url)
+ {
+   setInterval(async function (el,url)
+   {
+       const response =  await  fetch(url);
+       const text =   await response.text();
+       el.textContent = text;
+   },1000);
+ }
