@@ -52,14 +52,27 @@ async function showMessage(el,url)
 
  async function startShowingMessage(el,url)
  {
-   window.setInterval(async function () {
-       const response =  await fetch(url);
-       const text =   await response.text();
-       el.textContent = text;
-
-   },1000,el,url)
+   window.setInterval(showMessage,1000,el,url)
  }
- function handleError()
+async function handleError(el,url)
  {
-
+   let text =""
+     const response =  await  fetch(url);
+     if (response.ok){
+        text =   await response.text();
+     }
+     else{
+       text = "OH DEAR"
+     }
+     el.textContent = text;
  }
+async function drawBox(elt,url)
+{
+  console.log(url);
+  window.setInterval(async function (elt,url) {
+  const response =  await  fetch(url);
+  const data = await response.json();
+  var ctx = elt.getContext('2d');
+  ctx.fillRect(data.x, data.y, data.x+10, data.y+10);
+  },1000,elt,url)
+}
