@@ -50,12 +50,16 @@ async function showMessage(el,url)
      }
  }
 
- function startShowingMessage(el,url)
+ async function startShowingMessage(el,url)
  {
-   setInterval(async function (el,url)
-   {
-       const response =  await  fetch(url);
+   window.setInterval(async function () {
+       const response =  await fetch(url);
        const text =   await response.text();
        el.textContent = text;
-   },1000);
+
+   },1000,el,url)
+ }
+ function handleError()
+ {
+
  }
